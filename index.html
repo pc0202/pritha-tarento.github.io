@@ -164,18 +164,27 @@ footer {
         url: 'https://572cf4b4.ngrok.io/user/'+osid,
           // timeout: 15000,
           // ContentType: "application/json",
-           type: "GET",
-          // dataType: "json",
-          //crossDomain: true,
+          type: "GET",
           success: function (res) {
-            console.log(res)
-            alert('sucess');
+            console.log(res);
+            console.log(res.result);            
+            $.each(res.result,function(key,value){
+    			console.log("key = "+ key);
+                if ( key == undefined ) {
+            	alert('Wrong identifier: please enter a correct identifier');
+                } else {
+                  myFunction(key);
+
+                }
+			      });
+                      
           },
           failure: function (res) { console.log(res); alert('failure'); },
           error: function (res) {
-            alert('error');
+            alert('Wrong identifier: please enter a correct identifier');
             console.log("finished invoking jax");
           }
+
       });
     });
   </script>
