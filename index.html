@@ -187,6 +187,18 @@ footer {
 
       });
     });
+        
+    function myFunction(key) {
+  		var retVal = confirm("Congrats! You are a "+ key+"... Do you want to place your order with us?");
+      
+        if( retVal == true ) {
+                  window.location.href = "https://devcon-os-store.myshopify.com/pages/devcon-checkout";
+                  return true;
+               } else {
+                  window.location.href =  "https://devcon-os-store.myshopify.com/pages/devcon-abort";
+                  return false;
+               }
+	}
   </script>
 </body>
 
