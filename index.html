@@ -176,22 +176,20 @@ footer {
             console.log(res.result); 
             var json = res.result;
             $.each(json,function(key,value){
-    			console.log("key = "+ key);
-		 if(res.result.Teacher){console.log(res.result.Teacher.name)}   
-                if ( key == undefined ) {
-            	alert('Wrong identifier: please enter a correct identifier');
-                } else {
-			var obj = JSON.stringify(json);
-			if( obj.Teacher ){
-			   console.log("key name= "+ obj.key);
-		    	    var name = obj.key.name;
-			   }
-			   
+    	        console.log("key = "+ key);
+	        var name = '';
+		if(res.result.Teacher){console.log(res.result.Teacher.name);name= res.result.Teacher.name; myFunction(key,name);} 
+		else{
+		     console.log('not teacher '+key);
+		      if ( key == undefined ) {
+            		alert('Wrong identifier: please enter a correct identifier');
+                      } else {
+                  	 myFunction(key,'');
 
-                  myFunction(key);
+                	}
+		     }   
 
-                }
-			      });
+	      });
                       
           },
           failure: function (res) { console.log(res); alert('failure'); },
@@ -203,8 +201,8 @@ footer {
       });
     });
         
-    function myFunction(key) {
-  		var retVal = confirm("Congratulations! "+ "" +", you are a "+ key+"... Do you want to avail any offers with DIKSHA?");
+    function myFunction(key, name) {
+  		var retVal = confirm("Congratulations! "+ name +", you are a "+ key+"... Do you want to avail any offers with DIKSHA?");
       
         if( retVal == true ) {
                   window.location.href = "https://devcon-os-store.myshopify.com/pages/devcon-checkout";
