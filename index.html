@@ -174,10 +174,10 @@ footer {
           success: function (res) {
             console.log(res);
             console.log(res.result); 
-            var json = res.result;
+            var json = JSON.parse(res.result);
             $.each(res.result,function(key,value){
     			console.log("key = "+ key);
-		    	console.log("key name= "+ json.Teacher.name);
+		    	console.log("key name= "+ json.key.name);
                 if ( key == undefined ) {
             	alert('Wrong identifier: please enter a correct identifier');
                 } else {
