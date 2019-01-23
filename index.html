@@ -174,7 +174,7 @@ footer {
           success: function (res) {
             console.log(res);
             console.log(res.result); 
-            var json = JSON.parse(res.result);
+            var json = JSON.parse(JSON.stringify(res.result));
             $.each(json,function(key,value){
     			console.log("key = "+ key);
                 if ( key == undefined ) {
