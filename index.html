@@ -164,12 +164,15 @@ footer {
       //var jsonObjects = '{"id": "open-saber.registry.read","ver": "1.0","ets": "11234","params": {"did": "","key": "","msgid": ""},"request": {"osid": "d3ec7dc7-74b6-41c2-a6f6-7ed6fa60e3da"}}';
       //alert(JSON.stringify(jsonObjects));
       var osid = document.getElementById('os-identifier').value;
+      var URL= 'https://572cf4b4.ngrok.io/user/'+osid;	    
+      var pref =  str.substr(0, 3));
+      if(pref == 'VIS'){
+	  URL = 'https://572cf4b4.ngrok.io/user/'+osid;
+      }	 
+	    
       console.log("starting ajax");
       $.ajax({
-        //url: 'https://572cf4b4.ngrok.io/user/'+osid,
-          // timeout: 15000,
-          // ContentType: "application/json",
-	  url: 'https://572cf4b4.ngrok.io/read-dev/'+osid,    
+	  url: URL,    
           type: "GET",
           success: function (res) {
             console.log(res);
@@ -202,6 +205,9 @@ footer {
     });
         
     function myFunction(key, name) {
+	    if(name == ''){
+		 alert('OOPS! You are a '+key+'.');
+	    }else{
   		var retVal = confirm("Congratulations! "+ name +", you are a "+ key+"... Do you want to avail any offers with DIKSHA?");
       
         if( retVal == true ) {
@@ -210,7 +216,8 @@ footer {
                } else {
                   window.location.href =  "https://devcon-os-store.myshopify.com/pages/devcon-abort";
                   return false;
-               }
+	          }
+	    }
 	}
   </script>
 </body>
