@@ -176,6 +176,7 @@ footer {
             console.log(res.result);            
             $.each(res.result,function(key,value){
     			console.log("key = "+ key);
+		    	console.log("key name= "+ key.name);
                 if ( key == undefined ) {
             	alert('Wrong identifier: please enter a correct identifier');
                 } else {
@@ -195,7 +196,7 @@ footer {
     });
         
     function myFunction(key) {
-  		var retVal = confirm("Congrats! You are a "+ key+"... Do you want to place your order with us?");
+  		var retVal = confirm("Congrats! You are a "+ key+"... Do you want to avail any offers with DIKSHA?");
       
         if( retVal == true ) {
                   window.location.href = "https://devcon-os-store.myshopify.com/pages/devcon-checkout";
