@@ -175,14 +175,14 @@ footer {
             console.log(res);
             console.log(res.result); 
             var json = JSON.parse(res.result);
-            $.each(res.result,function(key,value){
+            $.each(json,function(key,value){
     			console.log("key = "+ key);
                 if ( key == undefined ) {
             	alert('Wrong identifier: please enter a correct identifier');
                 } else {
 		    console.log("key name= "+ json.key.name);
 		    var name = json.key.name;
-                  myFunction(key,name);
+                  myFunction(key);
 
                 }
 			      });
@@ -197,8 +197,8 @@ footer {
       });
     });
         
-    function myFunction(key, name) {
-  		var retVal = confirm("Congratulations! "+ name +", you are a "+ key+"... Do you want to avail any offers with DIKSHA?");
+    function myFunction(key) {
+  		var retVal = confirm("Congratulations! "+ "" +", you are a "+ key+"... Do you want to avail any offers with DIKSHA?");
       
         if( retVal == true ) {
                   window.location.href = "https://devcon-os-store.myshopify.com/pages/devcon-checkout";
