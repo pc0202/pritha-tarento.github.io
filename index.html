@@ -177,11 +177,12 @@ footer {
             var json = JSON.parse(res.result);
             $.each(res.result,function(key,value){
     			console.log("key = "+ key);
-		    	console.log("key name= "+ json.key.name);
                 if ( key == undefined ) {
             	alert('Wrong identifier: please enter a correct identifier');
                 } else {
-                  myFunction(key,json);
+		    console.log("key name= "+ json.key.name);
+		    var name = json.key.name;
+                  myFunction(key,name);
 
                 }
 			      });
@@ -196,8 +197,7 @@ footer {
       });
     });
         
-    function myFunction(key,json) {
-	    var name = json.key.name;
+    function myFunction(key, name) {
   		var retVal = confirm("Congratulations! "+ name +", you are a "+ key+"... Do you want to avail any offers with DIKSHA?");
       
         if( retVal == true ) {
