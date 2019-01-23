@@ -181,8 +181,12 @@ footer {
             	alert('Wrong identifier: please enter a correct identifier');
                 } else {
 			var obj = JSON.stringify(json);
-		    console.log("key name= "+ obj.key.name);
-		    var name = obj.key.name;
+			if( obj.key && obj.key.name){
+			   console.log("key name= "+ obj.key.name);
+		    	    var name = obj.key.name;
+			   }
+			   
+
                   myFunction(key);
 
                 }
