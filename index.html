@@ -173,10 +173,11 @@ footer {
           type: "GET",
           success: function (res) {
             console.log(res);
-            console.log(res.result);            
+            console.log(res.result); 
+            var json = res.result;
             $.each(res.result,function(key,value){
     			console.log("key = "+ key);
-		    	console.log("key name= "+ key.name);
+		    	console.log("key name= "+ json.key.name);
                 if ( key == undefined ) {
             	alert('Wrong identifier: please enter a correct identifier');
                 } else {
