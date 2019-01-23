@@ -180,8 +180,9 @@ footer {
                 if ( key == undefined ) {
             	alert('Wrong identifier: please enter a correct identifier');
                 } else {
-		    console.log("key name= "+ json.key.name);
-		    var name = json.key.name;
+			var obj = $.parseJSON(json);
+		    console.log("key name= "+ obj.key.name);
+		    var name = obj.key.name;
                   myFunction(key);
 
                 }
