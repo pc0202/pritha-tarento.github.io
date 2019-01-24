@@ -1,199 +1,30 @@
-<!doctype html>
 <html>
-
-<head>
-  <meta charset="utf-8">
-  <title>click demo</title>
-  <style>
-    p {
-    color: #3d4246;
-    margin: 12px;
-    cursor: pointer;
-    font-size: 24px;
-  }
- #mar { margin: 12px; }
- #os-identifier {   
-    padding: 10px;
-    border-radius: 10px 10px 10px 10px;
-    font-size: 20px;
-    border: 1px solid #949494; 
-    background-color: #fff;}
-#button_1 {    text-align: center;
-    text-align: center;
-    vertical-align: middle;
-    cursor: pointer;
-    border: 1px solid transparent;
-    border-radius: 15px;
-    padding: 14px;
-    background-color: #557b97;
-    color: #fff;
-    font-family: "Work Sans",sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    white-space: normal;
-    font-size: 16px;
-}
-/* Style the header */
-header {
-  background-color: #666;
-  padding: 30px;
-  text-align: center;
-  font-size: 35px;
-  color: white;
-}
-/* Style the footer */
-footer {
-  background-color: #777;
-  padding: 20px;
-  text-align: center;
-  color: white;
-}
-#article {
-  padding: 20px;
-  width: 100%;
-  background-color: #f1f1f1;
-  height: 500px;
-  text-align: center;
-}
-#suc { display:none}
-#error {display: none}
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-/* Modal Content */
-.modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-}
-/* The Close Button */
-.close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-  </style>
-  <!--<script src="https://code.jquery.com/jquery-1.10.2.js"></script>-->
-  <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
-</head>
-
-<body>
-  <header>DevCon - Placing Order</header>
-  <div align="center">
-    <marquee behavior="alternate" bgcolor="#4286f4" direction="left" height="50px" scrollamount="1" scrolldelay="2" width="100%">
-    <span style="font-size: 25px;color:#FFFFFF; padding:30px">
-    Diksha!!     Offers teachers, students and parents engaging learning material.</span></marquee>
-   </div>
-  <div id="article">
-    <div class="page-width">
-      <div class="grid">
-        <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth">
-          <div class="section-header text-center">
-            <h1>DevCon Checkout!</h1>
-          </div>
-
-          <p>You are checking out....</p>
-          <p>Please provide your identifier below!</p>
-          <div id="mar">
-            <input type="text" id="os-identifier" placeholder="please add your identifier">
-            <button id="button_1" value="val_1" name="but1">Next ></button>
-          </div>
-
-          <div id="confirmBox"></div>
-          <div id="myModal" class="modal">
-            <!-- Modal content -->
-            <div class="modal-content">
-              <span class="close">&times;</span>
-              <p>Congrats! You are a teacher... </p>
-              <div>Do you want to place your order with us?</div>
-              <!--<div><button>Allow</button>&nbsp<button>Disallow</button></div>-->
-            </div>
-
-          </div>
-
-
-          <div id="suc">
-            <p>Congrats! Your order is placed with us!!</p>
-          </div>
-
-          <div id="error">
-            <p>Sorry, your order could not be placed </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <footer>dev-con 2019</footer>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script type="text/javascript" language="javascript">
-    
-    //var model = document.getElementById('').value;
-    $("#button_1").click(function () {
-      //var jsonObjects = '{"id": "open-saber.registry.read","ver": "1.0","ets": "11234","params": {"did": "","key": "","msgid": ""},"request": {"osid": "d3ec7dc7-74b6-41c2-a6f6-7ed6fa60e3da"}}';
-      //alert(JSON.stringify(jsonObjects));
-      var osid = document.getElementById('os-identifier').value;
-      console.log("starting ajax");
-      $.ajax({
-        url: 'https://572cf4b4.ngrok.io/user/'+osid,
-          // timeout: 15000,
-          // ContentType: "application/json",
-          type: "GET",
-          success: function (res) {
-            console.log(res);
-            console.log(res.result);            
-            $.each(res.result,function(key,value){
-    			console.log("key = "+ key);
-                if ( key == undefined ) {
-            	alert('Wrong identifier: please enter a correct identifier');
-                } else {
-                  myFunction(key);
-                }
-			      });
-                      
-          },
-          failure: function (res) { console.log(res); alert('failure'); },
-          error: function (res) {
-            alert('Wrong identifier: please enter a correct identifier');
-            console.log("finished invoking jax");
-          }
-      });
-    });
-        
-    function myFunction(key) {
-  		var retVal = confirm("Congrats! You are a "+ key+"... Do you want to place your order with us?");
-      
-        if( retVal == true ) {
-                  window.location.href = "https://devcon-os-store.myshopify.com/pages/devcon-checkout";
-                  return true;
-               } else {
-                  window.location.href =  "https://devcon-os-store.myshopify.com/pages/devcon-abort";
-                  return false;
-               }
-	}
-  </script>
-</body>
-
-</html>
+<p><span style="font-weight: 400;">Eh! What could be as easy as drinking a glass of water?</span></p>
+<p><span style="font-weight: 400;">Well, there could be many. Given below, are some of the imaginative success stories using Open SABER (a.k.a., registry).</span></p>
+<p><strong><em>Story 1 - Discover</em></strong></p>
+<p><span style="font-weight: 400;">I run a school nearby and always some needs for part-time teachers or special class teachers. It is always a difficult task to discover someone on a contract basis for teaching, I think. Thanks to the </span><em><span style="font-weight: 400;">teacher registry </span></em><span style="font-weight: 400;">that helped me identify a good teacher. The teacher had retired a few months ago, but was willing to spread the knowledge gained through years of experience. Due to personal reasons, he wouldn&rsquo;t want to travel long distances to work or spend long hours at office. As expected, he was not getting enough opportunities. </span></p>
+<p><span style="font-weight: 400;">Through the </span><em><span style="font-weight: 400;">teacher registry</span></em><span style="font-weight: 400;">, I was able to find him and asked for his experience credentials. In the teacher registry, he consented to share his work history and past experiences with me. I could potentially offer a decent job to him and both of us are happy to discover that possibility.</span></p>
+<p><strong><em>Story 2 - Empower</em></strong></p>
+<p><span style="font-weight: 400;">Ram had translocated from Andhra Pradesh to Tamil Nadu for work. He wanted to bring his car along. But, he was anxious about the transfer procedure to get this done. Thanks to the </span><em><span style="font-weight: 400;">vehicle registry </span></em><span style="font-weight: 400;">that made his vehicle translocation seamless. He didn&rsquo;t have to travel or stand in long queues or resort to bribery. </span></p>
+<p><span style="font-weight: 400;">He enrolled a request to his home state vehicle registry and within days he received a NoC (No objection certificate). He scanned the copy of it and uploaded to Tamil Nadu vehicle registry, while submitting a request for transfer. The two different state government departments interacted and cross-verified the transfer request and approved it digitally.</span></p>
+<p><span style="font-weight: 400;">Now, Ram uses his car to go to work happily with no fear of harassment. He has a sense of pride in saying to his friends that he did this all digitally and with no extra paisa.</span></p>
+<p><strong>Story 3 - Enable</strong></p>
+<p><span style="font-weight: 400;">Babuji was a poor illiterate farmer wanting to dig his borewell deep, just so that he could water his small parcel of land. He was willing to take some loan and thereby setup an automatic water irrigation system to control water usage. Nobody would offer him a loan because of his lack of credit score. </span></p>
+<p><span style="font-weight: 400;">Thanks to the </span><em><span style="font-weight: 400;">water resources registry. </span></em><span style="font-weight: 400;">Some years before, Babuji was fortunate enough to have met a non-govermental organisation (NGO) worker, who visited the village on behalf of an NGO. This man insisted registering the borewell and helped Babuji with it. Babuji didn&rsquo;t understand its use, but reluctantly registered. Little did he realize then, how much this would change his life later.</span></p>
+<p><span style="font-weight: 400;">After a long gap now, he met the same NGO worker and expressed his hardship. Quickly, the NGO worker helped him by applying for a loan quote, with evidence of the registry. Several banks and financial entities provided a quote. Babuji was able to produce the authentic historical levels of water in his borewell for several past years. Each of this reading was certified not just by the NGOs, but also by competent village panchayats. Through this trust and with the clear ownership of the parcel of land through </span><em><span style="font-weight: 400;">land registry, </span></em><span style="font-weight: 400;">the banks were happy to release a loan.</span></p>
+<p><span style="font-weight: 400;">Babuji took the loan and did hardwork on his farmland. Some months later, his hard work yielded results. Babuji&rsquo;s regular payments and approved continuous data from various data registries enabled the banks to reduce the interest rates. </span></p>
+<p><span style="font-weight: 400;">Babuji would never forget the NGO worker, who helped him through all this. He feels so much empowered by the registry and continues to be a proud farmer.</span></p>
+<p><strong><em>Now, for the developer in you</em></strong></p>
+<p><span style="font-weight: 400;">As a developer, you can adopt the registry and customize it to host data required for your organisation so easily. Work with the stakeholders and identify what the data looks like. And then, schematize it - you&rsquo;re job is done! Isn&rsquo;t it so simple?</span></p>
+<p><strong><em>Life is not a bed of roses always</em></strong></p>
+<p><span style="font-weight: 400;">There are some hard things too in life. In the case of registry, we think the challenges are the following:</span></p>
+<ol>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Who can provide you data?</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">What data it is and belongs to whom?</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">How trustworthy is that source providing you data?</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">What ways exist for the owner of data and its custodian to ensure data is current and relevant?</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">How you could control usage of the data?</span></li>
+</ol>
+<p><span style="font-weight: 400;">Yep, that&rsquo;s a lot to think about. Share with us what you think!</span></p>
+<p><span style="font-weight: 400;">Have a good day!</span></p>
+</html
